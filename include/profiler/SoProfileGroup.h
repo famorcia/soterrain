@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// T�a roziuj��t�u SoGroup o monosti profilov��
 /// \file SoProfileGroup.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 18.04.2006
 ///
 ///

@@ -1,18 +1,18 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Z�ladn�datov�prvky algoritmu ROAM.
+/// Align the data elements of the ROAM algorithm.
 /// \file SbROAMPrimitives.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 16.09.2005
 ///
-/// Algoritmus ROAM ve sv�statick��sti vyu��jako z�ladn�datovou
-/// strukturu bin�n�strom trojheln�. Pro tyto trojheln�y je zde
-/// definov�a t�a ::SbROAMTriangle. V dynamick��sti jsou pak poteba
-/// dv�prioritn�fronty. Prvn�z nich je prioritn�fronta trojheln� na
-/// rozd�en� Obsahuje trojheln�y t�y ::SbROAMSplitQueueTriangle.
-/// Druhou pak prioritn�fronta trojheln� na spojen� Ta obsahuje diamondy
-/// (�veice trojheln�) t�y ::SbROAMMergeQueueDiamond.
+/// The ROAM algorithm in statistics is used as a data model
+/// the structure of a bin n tree of a triple helix . It is here for these triplets
+/// define the ::SbROAMTriangle. They are then needed in dynamism
+/// two priority queues. The first of them is the priority queue of the three-wheeled na
+/// split Contains triangles ::SbROAMSplitQueueTriangle.
+/// The second is the priority queue of triples on the link. This contains diamonds
+/// (many triples) t y ::SbROAMMergeQueueDiamond.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //

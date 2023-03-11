@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Prioritn�fronta trojheln� na rozd�en�
 /// \file SbROAMSplitQueue.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 25.08.2005
 ///
 /// Do t�o prioritn�fronty se vkl�aj�trojheln�y, kter�je teba zaadit

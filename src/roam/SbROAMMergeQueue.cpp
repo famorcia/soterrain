@@ -1,15 +1,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Prioritn�fronta diamant na spojen�
+/// Priority queue diamond for connection
 /// \file SbROAMMergeQueue.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 25.08.2005
 ///
-/// Do t�o prioritn�fronty se vkl�aj�diamanty, kter�lze spojit na dva
-/// trojheln�y a t� dva trojheln�y z pvodn�h �y z triangulace odstranit.
-/// Toto se prov��tehdy, pokud je teba triangulaci zjednoduit a to tak, e
-/// se vyjme diamant s minim�n�prioritou, spoj�se a vloi se zp� p�adn�/// vznikl�nov�diamanty.
+
+/// Diamonds are placed in this priority queue, which can be combined into two
+/// triangles and remove the two triangles from the original triangulation.
+/// This is done if you want to simplify the triangulation and that's it, e
+/// a diamond with minimum priority is taken out, merged and inserted back to back
+/// a new diamond was born.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //

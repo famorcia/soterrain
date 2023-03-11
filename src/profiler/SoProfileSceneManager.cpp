@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////////////////////////////////
-//  Profilovaci knihovna
+//  Profiling library
 ///////////////////////////////////////////////////////////////////////////////
-/// Trida rozsirujici tridu SoSceneManager o moznosti profilovani.
+/// The triad extends the SoSceneManager triad with the possibility of profiling.
 /// \file SoProfileSceneManager.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 05.07.2005
 ///
-/// Tento manaer sc�y umo�je zjistit jakou dobu str�il procesor po�ta�
-/// vykreslov�� sc�y. Pro pouit�je teba nahradit vchoz�manaer sc�y
-/// t�to a inicializovat profilovac�knihovnu ve t��::PrProfiler.
+/// This manager allows you to find out how much time the computer's processor spent
+/// render scene. To use them you replace the input manager scene
+/// this and initialize the profiling library in t  ::PrProfiler.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //

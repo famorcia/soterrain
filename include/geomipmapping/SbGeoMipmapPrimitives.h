@@ -4,9 +4,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Z�ladn�datov�prvky algoritmu Geo Mip-mapping.
+/// Align the data elements of the Geo Mip-mapping algorithm.
 /// \file SbGeoMipmapPrimitives.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 30.01.2006
 ///
 /// Zde jsou definov�y z�ladn�datov�typy algoritmu Geo Mip-Mapping.

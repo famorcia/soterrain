@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Ter� vykreslovan algoritmem ROAM.
 /// \file SoSimpleROAMTerrain.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 25.08.2005
 ///
 /// Uzel grafu sc�y reprezentuj��ter� vykreslovan algoritmem ROAM. Pro

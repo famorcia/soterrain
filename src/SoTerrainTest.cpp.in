@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///
 /// \file SoTerrainTest.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 06.03.2006
 ///
 /// </DL>
@@ -42,8 +42,8 @@
 #include <Inventor/events/SoKeyboardEvent.h>
 #include <Inventor/sensors/SoTimerSensor.h>
 
-#include <Inventor/Qt/SoQt.h>
-#include <Inventor/Qt/viewers/SoQtExaminerViewer.h>
+#include <Inventor/@Gui@/So@Gui@.h>
+#include <Inventor/@Gui@/viewers/So@Gui@ExaminerViewer.h>
 
 #include <iostream>
 #include <cmath>
@@ -56,7 +56,7 @@
 #include <profiler/PrProfiler.h>
 #include <profiler/SoProfileGroup.h>
 #include <profiler/SoProfileSceneManager.h>
-#include <SoQtFreeViewer.h>
+#include <So@Gui@FreeViewer.h>
 #include <utils.h>
 
 #if defined(__WIN32__) || defined(_WIN32)
@@ -291,7 +291,7 @@ void cameraTimerCallback(void * userData, SoSensor * sensor)
 
     if (point >= CAMERA_POINTS_COUNT - 1)
     {
-      SoQt::exitMainLoop();
+      So@Gui@::exitMainLoop();
     }
 
     camera->position = (1.0f - ratio) * camera_positions[point] +
@@ -307,7 +307,7 @@ void cameraTimerCallback(void * userData, SoSensor * sensor)
 void renderCallback(void * _render_area, SoSceneManager * scene_manager)
 {
   /* Redraw render area when using custom scene manager. */
-  SoQtRenderArea * render_area = reinterpret_cast<SoQtRenderArea *>(_render_area);
+  So@Gui@RenderArea * render_area = reinterpret_cast<So@Gui@RenderArea *>(_render_area);
   render_area->render();
 }
 
@@ -327,12 +327,12 @@ void help()
     << std::endl;
   std::cout << "\t\tbrutalforce\t\tBrutal force terrain rendering." <<
     std::endl;
-  std::cout << "\t\troam\t\t\tROAM algorithm terrain rendeing." << std::endl;
+  std::cout << "\t\troam\t\t\tROAM algorithm terrain rendering." << std::endl;
   std::cout << "\t\tgeomipmapping\t\tGeo Mip-Mapping algorithm terrain rendering."
     << std::endl;
-  std::cout << "\t-A animation_time\tLength of animation in miliseconds (default: 30 s)."
+  std::cout << "\t-A animation_time\tLength of animation in milliseconds (default: 30 s)."
     << std::endl;
-  std::cout << "\t-F frame_time\t\tFrame time in miliseconds (default: 40 ms)."
+  std::cout << "\t-F frame_time\t\tFrame time in milliseconds (default: 40 ms)."
     << std::endl;
   std::cout << "\t-e pixel_error\t\tDisplay error of rendering in pixels (default: 6)."
     << std::endl;
@@ -341,7 +341,7 @@ void help()
   std::cout << "\t-g tile_size\t\tSize of side of each tile in tile based algorithms. (default: 33)"
     << std::endl;
   std::cout << "\t-f\t\t\tRun application at fullscreen." << std::endl;
-  std::cout << "\t-c\t\t\tEnable frustrum culling." << std::endl;
+  std::cout << "\t-c\t\t\tEnable frustum culling." << std::endl;
   std::cout << "\t-v\t\t\tRun animation at application start." << std::endl;
   std::cout << "\t-s\t\t\tEnable animation synchronization with time." << std::endl;
 }
@@ -501,8 +501,8 @@ int main(int argc, char * argv[])
   //putenv("COIN_AUTO_CACHING=0");
 
   /* Create window. */
-  QWidget * window;
-  if ((window = SoQt::init(argc, argv, "SoTerrain Test Application")) == NULL)
+  @WINWIDGET@ window;
+  if ((window = So@Gui@::init(argc, argv, "SoTerrain Test Application")) == NULL)
   {
     exit(1);
   }
@@ -746,7 +746,7 @@ int main(int argc, char * argv[])
   }
 
   /* Setup camera and render area. */
-  SoQtFreeViewer * render_area = new SoQtFreeViewer(window);
+  So@Gui@FreeViewer * render_area = new So@Gui@FreeViewer(window);
   SoSceneManager * scene_manager = new SoSceneManager();
   render_area->setHeadlight(FALSE);
   render_area->setSceneManager(scene_manager);
@@ -777,9 +777,9 @@ int main(int argc, char * argv[])
   }
 
   /* Run application. */
-  SoQt::show(window);
-  SoQt::mainLoop();
-  SoQt::done();
+  So@Gui@::show(window);
+  So@Gui@::mainLoop();
+  So@Gui@::done();
 
   PR_PRINT_RESULTS(profile_name);
 

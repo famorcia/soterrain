@@ -1,16 +1,19 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Z�ladn�datov�prvky algoritmu Geo Mip-mapping.
+/// Z ladn datov prvky algorithm Geo Mip-mapping.
 /// \file SbGeoMipmapPrimitives.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 30.01.2006
 ///
-/// Zde jsou definov�y z�ladn�datov�typy algoritmu Geo Mip-Mapping.
-/// Kvadrantov strom dladic ve t��::SbGeoMipmapTileTree rekurzivn�/// rozd�uje vkovou mapu ter�u na dladice t�y SbGeoMipmapTile. V jeho
-/// horn�h patrech jsou dladice pouze virtu�n� tj. ty, kter�neobsahuj�/// vlastn�geometrii, ale jenom sv�potomky. Dladice na nejni�rovni
-/// stromu obsahuj�pole jednotlivch rovn�detail dladice ve t��/// ::SbGeoMipmapTileLevel, jen u geometrii zahrnuj�
-//////////////////////////////////////////////////////////////////////////////
+/// The basic data types of the Geo Mip-Mapping algorithm are defined here.
+/// The quadrant tile tree in t  ::SbGeoMipmapTileTree recursively
+/// splits the current age map into tiles of SbGeoMipmapTile. In his
+/// on the upper levels, the tiles are only virtual, i.e. those that do not contain
+/// /// their own geometry, but only world descendants. Tiles on the lowest level
+/// the tree contains an array of individual equal tile details in t
+/// /// ::SbGeoMipmapTileLevel, only for geometry it includes
+/// //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //
 // This library is free software; you can redistribute it and/or

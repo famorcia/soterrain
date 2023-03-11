@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// T�a roziuj��t�u SoSceneManager o monosti profilov��
 /// \file SoProfileSceneManager.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 05.07.2005
 ///
 /// Tento manaer sc�y umo�je zjistit jakou dobu str�il procesor po�ta�

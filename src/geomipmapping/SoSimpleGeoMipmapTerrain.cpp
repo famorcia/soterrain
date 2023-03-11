@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Ter� vykreslovan algoritmem Geo Mip-Mapping.
+/// Ter  rendered by the Geo Mip-Mapping algorithm.
 /// \file SoSimpleGeoMipmapTerrain.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 29.01.2006
 ///
-/// Uzel grafu sc�y reprezentuj��ter� vykreslovan algoritmem Geo
+/// The scene graph node represents the terrain rendered by the Geo algorithm
 /// Mip-Mapping.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton

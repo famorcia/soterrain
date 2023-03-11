@@ -1,29 +1,30 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Okno pro voln pohyb ve scen�pomoc�myi a kl�esnice.
+/// A window for free movement in the scene using the keyboard and piano.
 /// \file SoQtFreeViewer.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 06.03.2006
 ///
-/// Prohl��pro voln pohyb ve sc��pomoc�myi a kl�esnice.
-/// Zobraz�okno se sc�ou, ve kter�je mono se pohybovat pomoc�myi a
-/// kl�esnice. Kurzor myi je oknem zachycen a skryt, take je mono ot�et
-/// pohledem do vech sm� dokola. Pozici kamery lze ovl�at t�ito kl�esami:
+/// View for free movement in keyboard and piano.
+/// Display a window with a window that can be moved around with a
+/// piano. Myi cursor is captured and hidden by the window, so it is easy to open
+/// looking at everyone around. The camera position can be controlled with the following keys:
 /// <DL>
-///   <DT>W</DT><DD>posun kamery kupedu</DD>
-///   <DT>S</DT><DD>posun kamery dozadu</DD>
-///   <DT>A</DT><DD>posun kamery doleva</DD>
-///   <DT>D</DT><DD>posun kamery doprava</DD>
-///   <DT>Q</DT><DD>posun kamery nahoru</DD>
-///   <DT>E</DT><DD>posun kamery dol</DD>
-///   <DT>LEFT</DT><DD>nato�n�kamery doleva</DD>
-///   <DT>RIGHT</DT><DD>nato�n�kamery doprava</DD>
-///   <DT>UP</DT><DD>nato�n�kamery nahoru</DD>
-///   <DT>DOWN</DT><DD>nato�n�kamery dol</DD>
-///   <DT>PGUP</DT><DD>naklon��kamery doleva</DD>
-///   <DT>PGDOWN</DT><DD>naklon��kamery doprava</DD>
-/// </DL>
+/// <DT>W</DT><DD>movement of compartment camera</DD>
+/// <DT>S</DT><DD>move camera back</DD>
+/// <DT>A</DT><DD>move camera left</DD>
+/// <DT>D</DT><DD>move camera right</DD>
+/// <DT>Q</DT><DD>move camera up</DD>
+/// <DT>E</DT><DD>move camera down</DD>
+/// <DT>LEFT</DT><DD>point camera left</DD>
+/// <DT>RIGHT</DT><DD>point the camera to the right</DD>
+/// <DT>UP</DT><DD>point camera up</DD>
+/// <DT>DOWN</DT><DD>turn the camera down</DD>
+/// <DT>PGUP</DT><DD>tilt camera left</DD>
+/// <DT>PGDOWN</DT><DD>tilt camera right</DD>
+///</DL>
+
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //
@@ -42,15 +43,15 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <SoQtFreeViewer.h>
+#include <So@Gui@FreeViewer.h>
 
-SOQT_OBJECT_SOURCE(SoQtFreeViewer);
+SO@GUI@_OBJECT_SOURCE(So@Gui@FreeViewer);
 
 /******************************************************************************
-* SoQtFreeViewer - public
+* So@Gui@FreeViewer - public
 ******************************************************************************/
 
-SoQtFreeViewer::SoQtFreeViewer(QWidget * parent, const char * name,
+So@Gui@FreeViewer::So@Gui@FreeViewer(@WINWIDGET@ parent, const char * name,
   SbBool embed):
   inherited(parent, name, embed, BROWSER, TRUE),
   sensitivity(1.0f), invert(FALSE)
@@ -58,30 +59,30 @@ SoQtFreeViewer::SoQtFreeViewer(QWidget * parent, const char * name,
   constructorCommon(TRUE);
 }
 
-SoQtFreeViewer::~SoQtFreeViewer()
+So@Gui@FreeViewer::~So@Gui@FreeViewer()
 {
 
 }
 
-float SoQtFreeViewer::getMouseSensitivity() const
+float So@Gui@FreeViewer::getMouseSensitivity() const
 {
   /* Vraceni citlivosti mysi. */
   return sensitivity;
 }
 
-void SoQtFreeViewer::setMouseSensitivity(const float _sensitivity)
+void So@Gui@FreeViewer::setMouseSensitivity(const float _sensitivity)
 {
   /* Nastaveni citlivosti mysi. */
   sensitivity = _sensitivity;
 }
 
-SbBool SoQtFreeViewer::getInvertMouse() const
+SbBool So@Gui@FreeViewer::getInvertMouse() const
 {
   /* Ziskani priznaku invertovane mysi. */
   return invert;
 }
 
-void SoQtFreeViewer::setInvertMouse(const SbBool enabled)
+void So@Gui@FreeViewer::setInvertMouse(const SbBool enabled)
 {
   /* Nastaveni priznaku invertovane mysi. */
   invert = enabled;
@@ -89,10 +90,10 @@ void SoQtFreeViewer::setInvertMouse(const SbBool enabled)
 
 
 /******************************************************************************
-* SoQtFreeViewer - protected
+* So@Gui@FreeViewer - protected
 ******************************************************************************/
 
-SoQtFreeViewer::SoQtFreeViewer(QWidget * parent, const char * const name,
+So@Gui@FreeViewer::So@Gui@FreeViewer(@WINWIDGET@ parent, const char * const name,
   SbBool embed, SbBool build):
   inherited(parent, name, embed, BROWSER, build),
   sensitivity(1.0f), invert(FALSE)
@@ -100,7 +101,7 @@ SoQtFreeViewer::SoQtFreeViewer(QWidget * parent, const char * const name,
   constructorCommon(build);
 }
 
-SbBool SoQtFreeViewer::processSoEvent(const SoEvent * const event)
+SbBool So@Gui@FreeViewer::processSoEvent(const SoEvent * const event)
 {
   SbBool result = FALSE;
 
@@ -131,7 +132,7 @@ SbBool SoQtFreeViewer::processSoEvent(const SoEvent * const event)
   return result;
 }
 
-SbBool SoQtFreeViewer::processSoLocation2Event(const SoLocation2Event *
+SbBool So@Gui@FreeViewer::processSoLocation2Event(const SoLocation2Event *
   const _event)
 {
   SoCamera * camera = getCamera();
@@ -158,7 +159,7 @@ SbBool SoQtFreeViewer::processSoLocation2Event(const SoLocation2Event *
   return TRUE;
 }
 
-SbBool SoQtFreeViewer::processSoKeyboardEvent(const SoKeyboardEvent *
+SbBool So@Gui@FreeViewer::processSoKeyboardEvent(const SoKeyboardEvent *
   const event)
 {
   SoCamera * camera = getCamera();
@@ -167,7 +168,7 @@ SbBool SoQtFreeViewer::processSoKeyboardEvent(const SoKeyboardEvent *
 
   if (SO_KEY_PRESS_EVENT(event, ESCAPE))
   {
-    SoQt::exitMainLoop();
+    So@Gui@::exitMainLoop();
     return TRUE;
   }
   else if (SO_KEY_PRESS_EVENT(event, ENTER))
@@ -260,51 +261,62 @@ SbBool SoQtFreeViewer::processSoKeyboardEvent(const SoKeyboardEvent *
   return FALSE;
 }
 
-SbBool SoQtFreeViewer::processSoMouseButtonEvent(const SoMouseButtonEvent *
+SbBool So@Gui@FreeViewer::processSoMouseButtonEvent(const SoMouseButtonEvent *
   const event)
 {
   return FALSE;
 }
 
 /******************************************************************************
-* SoQtFreeViewer - private
+* So@Gui@FreeViewer - private
 ******************************************************************************/
 
-void SoQtFreeViewer::constructorCommon(SbBool buildNow)
+void So@Gui@FreeViewer::constructorCommon(SbBool buildNow)
 {
   if (buildNow)
   {
-    QWidget * widget = buildWidget(getParentWidget());
+    @WINWIDGET@ widget = buildWidget(getParentWidget());
     setBaseWidget(widget);
   }
 
-  setComponentCursor(SoQtCursor::getBlankCursor());
+  setComponentCursor(So@Gui@Cursor::getBlankCursor());
 }
 
-SbVec2s SoQtFreeViewer::getCenter() const
+SbVec2s So@Gui@FreeViewer::getCenter() const
 {
+// TODO:
+#if 0
   /* Ziskani stredu okna relativne. */
-  QWidget * widget = getParentWidget();
+  @WINWIDGET@ widget = getParentWidget();
   return SbVec2s(widget->width() / 2, widget->height() / 2);
+  #endif
+  return SbVec2s(100,100);
 }
 
-SbVec2s SoQtFreeViewer::getPosition() const
+SbVec2s So@Gui@FreeViewer::getPosition() const
 {
+// TODO:
+#if 0
   /* Ziskani pocatku okna vuci obrazovce. */
-  QWidget * widget = getParentWidget();
+  @WINWIDGET@ widget = getParentWidget();
   QPoint position = widget->pos();
   return SbVec2s(position.x(), position.y());
+#endif
+   return SbVec2s(100,100);
 }
 
-void SoQtFreeViewer::setCursorPosition(const SbVec2s position)
+void So@Gui@FreeViewer::setCursorPosition(const SbVec2s position)
 {
   /* Nastaveni absolutni pozice kurzoru. */
-  QCursor::setPos(position[0], position[1]);
+  // QCursor::setPos(position[0], position[1]);
 }
 
-SbVec2s SoQtFreeViewer::getCursorPosition()
+SbVec2s So@Gui@FreeViewer::getCursorPosition()
 {
+#if 0
   /* Ziskani absolutni pozice kurzoru. */
   QPoint position = QCursor::pos();
   return SbVec2s(position.x(), position.y());
+  #endif
+  return SbVec2s(10,10);
 }

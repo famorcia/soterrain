@@ -6,11 +6,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Terrain rendered by Chunked LoD algorithm.
 /// \file SoSimpleChunkedLoDTerrain.h
-/// \author Radek Barton - xbarto33@stud.fit.vutbr.cz
+/// \author Radek Barton - xbarto33
 /// \date 08.11.2006
 ///
 /// This is a scene graph node representing terrain rendered by Chunked LoD
-/// algorithm. To use this node you must preppend ::SoCordinate3 node with input
+/// algorithm. To use this node you must prepend ::SoCoordinate3 node with input
 /// heightmap coordinates, set \e mapSize field to size of side of that
 /// heightmap and then set \e tileSize field to desired size of tiles on any
 /// level of detail. \e mapSize \p - \p 1 have to be dividable by \e mapSize
@@ -35,7 +35,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ///////////////////////////////////////////////////////////////////////////////
 
-// Coin inludes.
+// Coin includes.
 #include <Inventor/SbBasic.h>
 #include <Inventor/SbLinear.h>
 #include <Inventor/nodes/SoShape.h>
@@ -57,7 +57,7 @@
 
 /** Terrain rendered by Chunked LoD algorithm.
 This is a scene graph node representing terrain rendered by Chunked LoD
-algorithm. To use this node you must preppend ::SoCordinate3 node with input
+algorithm. To use this node you must prepend ::SoCoordinate3 node with input
 heightmap coordinates, set \e mapSize field to size of side of that heightmap
 and then set \e tileSize field to desired size of tiles on any level of detail.
 \e mapSize \p - \p 1 have to be dividable by \e mapSize \p - \p 1 and this
@@ -83,29 +83,29 @@ class SoSimpleChunkedLoDTerrain : public SoShape
     SoSFInt32 tileSize;
     /// Desired pixel error of rendered terrain.
     SoSFInt32 pixelError;
-    /// Flag of enabled frustrum culling.
+    /// Flag of enabled frustum culling.
     SoSFBool frustrumCulling;
-    /// Flag of freezed algorithm.
+    /// Flag of frozen algorithm.
     SoSFBool freeze;
   protected:
     /* Methods. */
     /** Renders terrain.
     Creates tile quad-tree from input heightmap when called first time. Then
     and anytime when called again parses that tree to decide which tiles on
-    appropriate level of detail shoud be rendered accordingly to setted pixel
-    error. Tiles which are inside view frustrum or all of them if frustrum
+    appropriate level of detail should be rendered accordingly to set pixel
+    error. Tiles which are inside view frustum or all of them if frustum
     culling is disabled are rendered during this parsing.
-    \param action Object with scene graph informations. */
+    \param action Object with scene graph information. */
     virtual void GLRender(SoGLRenderAction * action);
     /** Creates terrain geometry triangles.
     Creates all triangles from input heightmap in brutal-force manner for
     collision detection, ray picking and other purposes.
-    \param action Object with scene graph informations. */
+    \param action Object with scene graph information. */
     virtual void generatePrimitives(SoAction * action);
     /** Computes bounding box and its center.
     Computes bounding box of whole terrain from input heightmap and its center
-    and returns them in \e box and \e center paremeters.
-    \param action Object with scene graph informations.
+    and returns them in \e box and \e center parameters.
+    \param action Object with scene graph information.
     \param box Resulting bounding box of terrain.
     \param center Center of resulting bounding box of terrain. */
     virtual void computeBBox(SoAction * action, SbBox3f & box,

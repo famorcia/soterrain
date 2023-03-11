@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Prioritn�fronta diamant na spojen�
 /// \file SbROAMMergeQueue.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 25.08.2005
 ///
 /// Do t�o prioritn�fronty se vkl�aj�diamanty, kter�lze spojit na dva

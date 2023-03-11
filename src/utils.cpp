@@ -5,7 +5,7 @@
 /// Obecn�makra a funkce.
 /// Hodnota zpracovan�o prarametru.
 /// \file utils.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 19.04.2005
 ///
 /// Makra pro vemon��ly.

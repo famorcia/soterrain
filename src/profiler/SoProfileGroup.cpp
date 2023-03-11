@@ -1,13 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// T�a roziuj��t�u SoGroup o monosti profilov��
+/// This resolves the SoGroup about the possibility of profiles
 /// \file SoProfileGroup.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 18.04.2006
 ///
-/// Umonuje zm�it dobu str�enou vykreslov�� uzl obsaench v t�o skupin�
-/// za pomoc�profileru ve statick�t�e ::PrProfiler.
+/// Allows you to change the time taken to render the nodes contained in that group
+/// using the profiler in the static ::PrProfiler.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //

@@ -4,16 +4,16 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Ter� vykreslovan algoritmem Geo Mip-Mapping.
+/// Ter  rendered by the Geo Mip-Mapping algorithm.
 /// \file SoSimpleGeoMipmapTerrain.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 29.01.2006
 ///
-/// Uzel grafu sc�y reprezentuj��ter� vykreslovan algoritmem Geo
-/// Mip-Mapping. Pro pouit�je teba uzlu pedadit uzel s koordin�y typu
-/// SoCordinate3 obsahuj��vkovou mapu ter�u a nastavit jej�rozm�y a
-/// rozm�y dladic generovanch z t�o vkov�mapy Velikost vkov�mapy mus�
-/// bt �vercov�o velikosti strany 2^n + 1, kde n je cel�kladn��slo.
+/// The sc y graph node represents the ter rendered by the Geo algorithm
+/// Mip-Mapping. To use the te node, the node should be a node with coordinates of the type
+/// SoCoordinate3 contains the terrain map and set its dimensions a
+/// sizes of tiles generated from this texture map The size of the texture map must
+/// bt vertices of side size 2^n + 1, where n is a positive integer.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //

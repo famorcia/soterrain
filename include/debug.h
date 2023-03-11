@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Obecn�makra pro ladic�vpisy.
 /// \file debug.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 19.04.2005
 ///
 /// Makra slou��k pomocnm vpism b�em lad��programu.

@@ -1,19 +1,19 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// T�a profileru algoritm.
+/// This is the profiler algorithm.
 /// \file PrProfiler.cpp
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 26.06.2005
 ///
-/// Tato statick�t�a slou�pro m�en�doby str�en�vykon��� rznch
-/// �st�algoritm. Lze ji pou� bu�p�o nebo za pomoc�maker. Nejprve je
-/// nutno prov�t inicializaci t�y pomoc�metody PrProfiler::initProfiler()
-/// resp. makra PR_INIT_PROFILER(), posl�e lze m�it dobu str�enou v n�ak�
-/// seku k�u pomoc�PrProfiler::startProfile() a PrProfiler::stopProfile()
-/// resp. PR_START_PROFILE() a PR_STOP_PROFILE(). Tyto p�azy maj�tak�svou
-/// objektovou verzi. Nakonec je mono vytisknout vsledky m�en�do souboru
-/// p�azy PrProfiler::printResults() resp. PR_PRINT_RESULTS().
+/// This static thread is used to measure the execution times of various
+///  st algorithm. It can be used by itself or as an assistant. First is
+/// it is necessary to initialize this helper method PrProfiler::initProfiler()
+/// or PR_INIT_PROFILER() macros, then the time can be saved in some
+/// section to help PrProfiler::startProfile() and PrProfiler::stopProfile()
+/// or PR_START_PROFILE() and PR_STOP_PROFILE(). These periods also have their own
+/// object version. Finally, it is possible to print the results of the measurement to a file
+/// lines PrProfiler::printResults() or PR_PRINT_RESULTS().
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //

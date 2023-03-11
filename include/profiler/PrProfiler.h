@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// T�a profileru algoritm.
 /// file PrProfiler.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 26.06.2005
 ///
 /// Tato statick�t�a slou�pro m�en�doby str�en�vykon��� rznch

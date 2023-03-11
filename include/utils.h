@@ -7,10 +7,10 @@
 /// Obecn�makra a funkce.
 /// Hodnota zpracovan�o prarametru.
 /// \file utils.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 19.04.2005
 ///
-/// Makra pro vemon��ly.
+/// Macros for bugs.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //

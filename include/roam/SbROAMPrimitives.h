@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Z�ladn�datov�prvky algoritmu ROAM.
 /// \file SbROAMPrimitives.h
-/// \author Radek Barto�- xbarto33
+/// \author Radek Barton - xbarto33
 /// \date 16.09.2005
 ///
 /// Algoritmus ROAM ve sv�statick��sti vyu��jako z�ladn�datovou

@@ -6,14 +6,14 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Basic data types of Chunked LoD algorithm.
 /// \file SbChunkedLoDPrimitives.h
-/// \author Radek Barton - xbarto33@stud.fit.vutbr.cz
+/// \author Radek Barton - xbarto33
 /// \date 14.11.2006
 /// There are defined basic data types of Chunked LoD algorithm in this file.
 /// Tile quad-tree of class ::SbChunkedLoDTileTree splits input heightmap into
-/// recursive structure of tiles of class ::SbChunkedLoDTile with gemetry on
+/// recursive structure of tiles of class ::SbChunkedLoDTile with geometry on
 /// different level of detail. Root node contains tile describing whole
 /// terrain on coarsest level of detail and it has four children describing
-/// quaters of root node on doubled level of detail. Child tiles are divided
+/// quarters of root node on doubled level of detail. Child tiles are divided
 /// recursively in same manner.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
@@ -46,24 +46,24 @@
 
 /** Chunked LoD algorithm tile.
 There is created quad-tree with this tiles serving for decision what level
-of detail of terrain parts should be choosen during rendering. Tile contains
+of detail of terrain parts should be chosen during rendering. Tile contains
 indices to heightmap vertices describing tile's geometry, static part of error
-metric and bounding box for easy frustrum culling. */
+metric and bounding box for easy frustum culling. */
 struct SbChunkedLoDTile
 {
   public:
     /* Methods. */
-    /** Construtor.
+    /** Constructor.
     Creates instance of ::SbChunkedLoDTile class with given static part of
     error metric \e error, prepares list of vertex indices to size
-    \e vertex_count and initializes them to zero values. Sets tile bunding box
-    to \e bunds value.
+    \e vertex_count and initializes them to zero values. Sets tile bundling box
+    to \e bounds value.
     \param error Static part of error metric for this tile.
     \param vertex_count Suggested count of vertex indices for tile geometry.
     \param bounds Bounding box of this tile. */
     SbChunkedLoDTile(float error = 0.0f, int vertex_count = 0,
       SbBox3f bounds = SbBox3f());
-    /** Copy contructor.
+    /** Copy constructor.
     Creates new instance of ::SbChunkedLoDTile class from \e old_tile instance.
     \param old_tile Old instance of tile. */
     SbChunkedLoDTile(const SbChunkedLoDTile & old_tile);
@@ -89,7 +89,7 @@ struct SbChunkedLoDTileTree
 {
   public:
     /* Methods. */
-    /** Construtor.
+    /** Constructor.
     Creates instance of ::SbChunkedLoDTileTree with given number of tiles
     in tree \e tree_size and initializes tiles in this tree to have square of
     \e tile_size number of vertex indices and default all other values.
