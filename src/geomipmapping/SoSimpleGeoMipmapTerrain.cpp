@@ -53,9 +53,9 @@ SoSimpleGeoMipmapTerrain::SoSimpleGeoMipmapTerrain():
   viewport_region(NULL), tile_tree(NULL), distance_const(0.0f),
   is_texture(FALSE), is_normals(FALSE),
   map_size(2), tile_size(2), pixel_error(DEFAULT_PIXEL_ERROR),
-  is_frustrum_culling(TRUE), is_freeze(FALSE),
+  is_frustum_culling(TRUE), is_freeze(FALSE),
   map_size_sensor(NULL), tile_size_sensor(NULL), pixel_error_sensor(NULL),
-  frustrum_culling_sensor(NULL), freeze_sensor(NULL)
+  frustum_culling_sensor(NULL), freeze_sensor(NULL)
 {
   /* Inicializace tridy. */
   SO_NODE_CONSTRUCTOR(SoSimpleGeoMipmapTerrain);
@@ -64,21 +64,21 @@ SoSimpleGeoMipmapTerrain::SoSimpleGeoMipmapTerrain():
   SO_NODE_ADD_FIELD(mapSize, (2));
   SO_NODE_ADD_FIELD(tileSize, (2));
   SO_NODE_ADD_FIELD(pixelError, (DEFAULT_PIXEL_ERROR));
-  SO_NODE_ADD_FIELD(frustrumCulling, (TRUE));
+  SO_NODE_ADD_FIELD(frustumCulling, (TRUE));
   SO_NODE_ADD_FIELD(freeze, (FALSE));
 
   /* Vytvoreni senzoru. */
   map_size_sensor = new SoFieldSensor(mapSizeChangedCB, this);
   tile_size_sensor = new SoFieldSensor(tileSizeChangedCB, this);
   pixel_error_sensor = new SoFieldSensor(pixelErrorChangedCB, this);
-  frustrum_culling_sensor = new SoFieldSensor(frustrumCullingChangedCB, this);
+  frustum_culling_sensor = new SoFieldSensor(frustumCullingChangedCB, this);
   freeze_sensor = new SoFieldSensor(freezeChangedCB, this);
 
   /* Napojeni senzoru na pole */
   map_size_sensor->attach(&mapSize);
   tile_size_sensor->attach(&tileSize);
   pixel_error_sensor->attach(&pixelError);
-  frustrum_culling_sensor->attach(&frustrumCulling);
+  frustum_culling_sensor->attach(&frustumCulling);
   freeze_sensor->attach(&freeze);
 }
 
@@ -133,7 +133,7 @@ void SoSimpleGeoMipmapTerrain::GLRender(SoGLRenderAction * action)
     PR_STOP_PROFILE(preprocess);
   }
 
-  /* Neni-li algoritmus vypnut provedeme vyber urovni dlazdic a frustrum
+  /* Neni-li algoritmus vypnut provedeme vyber urovni dlazdic a frustum
   culling. */
   if (!is_freeze)
   {
@@ -408,7 +408,7 @@ void SoSimpleGeoMipmapTerrain::recomputeTree(const int index,
   if (tile.levels != NULL)
   {
     /* Je-li dlazdice v pohledu kamery. */
-    if (!is_frustrum_culling || (render_parent &&
+    if (!is_frustum_culling || (render_parent &&
       view_volume->intersect(tile.bounds)))
     {
       tile.level = pickLevel(tile);
@@ -422,7 +422,7 @@ void SoSimpleGeoMipmapTerrain::recomputeTree(const int index,
   else
   {
     /* Je-li dlazdice v pohledu kamery. */
-    if (!is_frustrum_culling || (render_parent &&
+    if (!is_frustum_culling || (render_parent &&
       view_volume->intersect(tile.bounds)))
     {
       tile.level = 0;
@@ -654,13 +654,13 @@ void SoSimpleGeoMipmapTerrain::pixelErrorChangedCB(void * _instance,
   instance->pixel_error = instance->pixelError.getValue();
 }
 
-void SoSimpleGeoMipmapTerrain::frustrumCullingChangedCB(void * _instance,
+void SoSimpleGeoMipmapTerrain::frustumCullingChangedCB(void * _instance,
   SoSensor * sensor)
 {
   /* Aktualizace vnitrni hodnoty pole. */
   SoSimpleGeoMipmapTerrain * instance =
     reinterpret_cast<SoSimpleGeoMipmapTerrain *>(_instance);
-  instance->is_frustrum_culling = instance->frustrumCulling.getValue();
+  instance->is_frustum_culling = instance->frustumCulling.getValue();
 }
 
 void SoSimpleGeoMipmapTerrain::freezeChangedCB(void * _instance,
@@ -683,6 +683,6 @@ SoSimpleGeoMipmapTerrain::~SoSimpleGeoMipmapTerrain()
   delete map_size_sensor;
   delete tile_size_sensor;
   delete pixel_error_sensor;
-  delete frustrum_culling_sensor;
+  delete frustum_culling_sensor;
   delete freeze_sensor;
 }

@@ -4,28 +4,28 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Prohl��pro voln pohyb ve sc��pomoc�myi a kl�esnice.
+/// View for free movement in keyboard and piano.
 /// \file SoQtFreeViewer.h
 /// \author Radek Barton - xbarto33
-/// \date 06.03.2006
+/// \date 03/06/2006
 ///
-/// Prohl��pro voln pohyb ve sc��pomoc�myi a kl�esnice.
-/// Zobraz�okno se sc�ou, ve kter�je mono se pohybovat pomoc�myi a
-/// kl�esnice. Kurzor myi je oknem zachycen a skryt, take je mono ot�et
-/// pohledem do vech sm� dokola. Pozici kamery lze ovl�at t�ito kl�esami:
+/// View for free movement in keyboard and piano.
+/// Display a window with a window that can be moved around with a
+/// piano. Myi cursor is captured and hidden by the window, so it is easy to open
+/// looking at everyone around. The camera position can be controlled with the following keys:
 /// <DL>
-///   <DT>W</DT><DD>posun kamery kupedu</DD>
-///   <DT>S</DT><DD>posun kamery dozadu</DD>
-///   <DT>A</DT><DD>posun kamery doleva</DD>
-///   <DT>D</DT><DD>posun kamery doprava</DD>
-///   <DT>Q</DT><DD>posun kamery nahoru</DD>
-///   <DT>E</DT><DD>posun kamery dol</DD>
-///   <DT>LEFT</DT><DD>nato�n�kamery doleva</DD>
-///   <DT>RIGHT</DT><DD>nato�n�kamery doprava</DD>
-///   <DT>UP</DT><DD>nato�n�kamery nahoru</DD>
-///   <DT>DOWN</DT><DD>nato�n�kamery dol</DD>
-///   <DT>PGUP</DT><DD>naklon��kamery doleva</DD>
-///   <DT>PGDOWN</DT><DD>naklon��kamery doprava</DD>
+/// <DT>W</DT><DD>movement of compartment camera</DD>
+/// <DT>S</DT><DD>move camera back</DD>
+/// <DT>A</DT><DD>move camera left</DD>
+/// <DT>D</DT><DD>move camera right</DD>
+/// <DT>Q</DT><DD>move camera up</DD>
+/// <DT>E</DT><DD>move camera down</DD>
+/// <DT>LEFT</DT><DD>point camera left</DD>
+/// <DT>RIGHT</DT><DD>point the camera to the right</DD>
+/// <DT>UP</DT><DD>point camera up</DD>
+/// <DT>DOWN</DT><DD>turn the camera down</DD>
+/// <DT>PGUP</DT><DD>tilt camera left</DD>
+/// <DT>PGDOWN</DT><DD>tilt camera right</DD>
 /// </DL>
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
@@ -59,125 +59,130 @@
 
 #include <debug.h>
 
-/** Prohl��pro voln pohyb ve sc��pomoc�myi a kl�esnice.
-Zobraz�okno se sc�ou, ve kter�je mono se pohybovat pomoc�myi a
-kl�esnice. Kurzor myi je oknem zachycen a skryt, take je mono ot�et
-pohledem do vech sm� dokola. Pozici kamery lze ovl�at t�ito kl�esami:
-<DL>
-  <DT>W</DT><DD>posun kamery kupedu</DD>
-  <DT>S</DT><DD>posun kamery dozadu</DD>
-  <DT>A</DT><DD>posun kamery doleva</DD>
-  <DT>D</DT><DD>posun kamery doprava</DD>
-  <DT>Q</DT><DD>posun kamery nahoru</DD>
-  <DT>E</DT><DD>posun kamery dol</DD>
-  <DT>LEFT</DT><DD>nato�n�kamery doleva</DD>
-  <DT>RIGHT</DT><DD>nato�n�kamery doprava</DD>
-  <DT>UP</DT><DD>nato�n�kamery nahoru</DD>
-  <DT>DOWN</DT><DD>nato�n�kamery dol</DD>
-  <DT>PGUP</DT><DD>naklon��kamery doleva</DD>
-  <DT>PGDOWN</DT><DD>naklon��kamery doprava</DD>
-</DL>*/
+/** View for free movement in the keyboard and piano.
+    Display window with space, in which you can move with a
+    piano. Myi cursor is captured and hidden by the window, so it is easy to open
+    looking at everyone around. The camera position can be controlled with the following keys:
+    <DL>
+      <DT>W</DT><DD>movement of compartment camera</DD>
+      <DT>S</DT><DD>move camera back</DD>
+      <DT>A</DT><DD>move camera left</DD>
+      <DT>D</DT><DD>move camera right</DD>
+      <DT>Q</DT><DD>move camera up</DD>
+      <DT>E</DT><DD>move camera down</DD>
+      <DT>LEFT</DT><DD>turn the camera to the left</DD>
+      <DT>RIGHT</DT><DD>point the camera to the right</DD>
+      <DT>UP</DT><DD>point the camera up</DD>
+      <DT>DOWN</DT><DD>shoot the camera down</DD>
+      <DT>PGUP</DT><DD>tilt camera left</DD>
+      <DT>PGDOWN</DT><DD>tilt camera right</DD>
+    </DL>
+*/
 class So@Gui@FreeViewer : public So@Gui@Viewer
 {
   SO@GUI@_OBJECT_HEADER(So@Gui@FreeViewer, So@Gui@Viewer);
   public:
-    /** Konstruktor.
-    Vytvo�instanci t�y ::So@Gui@FreeViewer jako potomka okna \p parent a
-    nastav�jeho vnitn�jm�o na hodnotu \p name. V p�ad� e nen�specifikov�
-    parametr \p name, je jm�o ur�no automaticky. Parametr \p emdbed slou�    k ur�n� zda m�bt prohl��vloen do sv�o rodi�, � zda m�vytvoit svj
-    vlastn�shell.
-    \param parent Ukazatel na rodi�vsk�okno.
-    \param name Jm�o prohl��.
-    \param embed P�nak vloen�prohl�� do sv�o rodi�. */
+    /** Constructor.
+            Create an instance of ::So@Gui@FreeViewer as a child of window \p parent a
+            set its internal name to \p name. If not specified
+            parameter \p name, the name is determined automatically.
+            The parameter \p embed is used to determine whether it should be nested in its parent, or whether it should create its own
+            custom shell.
+            \param parent Pointer to the parent window.
+            \param name The name of the browser.
+            \param embed Command to embed the search into its parent.*/
     So@Gui@FreeViewer(@WINWIDGET@ parent = NULL, const char * name = NULL,
       SbBool embed = TRUE);
-    /** Destruktor.
-    Zru�instanci t�y ::So@Gui@FreeViewer. */
+    /**
+Destructor.
+    Destroy an instance of ::So@Gui@FreeViewer. */
     ~So@Gui@FreeViewer();
-    /** Vr��citlivost myi.
-    Vr��nastavenou hodnotu citlivosti myi prohl��.
-    \return Citlivost myi prohl��. */
+    /** The sensitivity of myi.
+            I checked the set sensitivity value.
+            \return Sensitivity myi hl  .*/
     float getMouseSensitivity() const;
-    /** Nastav�citlivost myi.
-    Nastav�citlivost myi prohl�� na hodnotu \p sensitivity.
-    \param sensitivity Nov�hodnota citlivosti myi prohl��. */
-    void setMouseSensitivity(const float sensitivity);
-    /** Vr��p�nak invertovan�myi.
-    Vr��nastavenou hodnotu p�naku invertovan�myi prohl��.
-    \return P�nak invertovan�myi. */
+    /** Adjust myi sensitivity.
+            Set the sensitivity of the myi screen to the \p sensitivity value.
+            \param sensitivity The new sensitivity value of myi hl  . */
+            void setMouseSensitivity(const float sensitivity);
+            /** Invert the string.
+            The set value of the voltage is inverted and viewed.
+            \return P nak inverted myi.*/
     SbBool getInvertMouse() const;
-    /** Nastav�p�nak invertovan�myi.
-    Nastav�p�nak invertovan�myi prohl�� na hodnotu \p enabled.
-    \param enabled Nov�hodnota p�naku invertovan�myi. */
+    /** Set the invert switch.
+            Set the inverted view switch to \p enabled.
+            \param enabled The new value of the inverted command.*/
     void setInvertMouse(const SbBool enabled);
   protected:
     /* Metody. */
-    /** Konstruktor.
-    Vytvo�instanci t�y ::So@Gui@FreeViewer jako potomka okna \p parent a
-    nastav�jeho vnitn�jm�o na hodnotu \p name. V p�ad� e nen�specifikov�
-    parametr \p name, je jm�o ur�no automaticky. Parametr \p emdbed slou�    k ur�n� zda m�bt prohl��vloen do sv�o rodi�, � zda m�vytvoit svj
-    vlastn�shell. Parametr \p build se pou��pro zajit��spr�n�o poad�    inicializace sou�st�prohl��.
-    \param parent Ukazatel na rodi�vsk�okno.
-    \param name Jm�o prohl��.
-    \param embed P�nak vloen�prohl�� do sv�o rodi�.
-    \param build P�nak vytvoen�okna prohl��. */
+    /** Constructor.
+            Create an instance of ::So@Gui@FreeViewer as a child of window \p parent a
+            set its internal name to \p name. If not specified
+            parameter \p name, the name is determined automatically. The parameter \p emdbed is used to determine whether it should be nested in its parent, or whether it should create its own
+            custom shell. The \p build parameter is used to capture the initialization order of the browser component.
+            \param parent Pointer to the parent window.
+            \param name The name of the browser.
+            \param embed Command to embed the search into its parent.
+            \param build Build the browser window.*/
     So@Gui@FreeViewer(@WINWIDGET@ parent, const char * const name, SbBool embed,
       SbBool build);
-    /** Obecn callback ud�ost�
-    Zpracuje poadavek na obslouen�ud�osti prohl�� a vr��\p TRUE
-    v p�ad� e byla ud�ost obslouena. Ve skute�osti pouze zjist�typ
-    ud�osti a obslouen�ponech�na p�lun callback za�en�
-    \param event Objekt ud�osti.
-    \return P�nak obslouen�ud�osti. */
+    /** General event callback
+            Processes the request to handle the view event and returns TRUE
+            if the event was serviced. Actually just detect the type
+            events and handlers are left with the callback enabled
+            \param event Event object.
+            \return The event handler.*/
     virtual SbBool processSoEvent(const SoEvent * const event);
-    /** Callback ud�ost�pohybu myi.
-    Zpracuje ud�ost pohybu myi prohl�� a vr��\p TRUE v p�ad� e byla
-    ud�ost obslouena.
-    \param event Objekt ud�osti.
-    \return P�nak obslouen�ud�osti. */
+    /** Callback event myi movement.
+            Processes the movement event of myi view and returns TRUE if it was
+            event served.
+            \param event Event object.
+            \return The event handler. */
     virtual SbBool processSoLocation2Event(const SoLocation2Event * const
       event);
-    /** Callback ud�ost�kl�esnice.
-    Zpracuje ud�ost stisku kl�esy prohl�� a vr��\p TRUE v p�ad� e
-    byla ud�ost obslouena.
-    \param event Objekt ud�osti.
-    \return P�nak obslouen�ud�osti. */
+    /** A callback will be made by the piano.
+            Processes the view key press event and returns TRUE in case of e
+            the event was served.
+            \param event Event object.
+            \return The event handler.*/
     virtual SbBool processSoKeyboardEvent(const SoKeyboardEvent * const event);
-    /** Callback ud�ost�stisku tla�tka myi.
-    Zpracuje ud�ost stisku tla�tka myi prohl�� a vr��\p TRUE v p�ad�
-    e byla ud�ost obslouena.
-    \param event Objekt ud�osti.
-    \return P�nak obslouen�ud�osti. */
+    /** Callback event for pressing the myi button.
+            Processes myi hlå key press event and returns TRUE if so
+            that the event was handled.
+            \param event Event object.
+            \return The event handler.*/
     virtual SbBool processSoMouseButtonEvent(const SoMouseButtonEvent * const
       event);
-    /* Datove polozky. */
-    /// Cytlivost myi.
-    float sensitivity;
-    /// P�nak invertovan�myi.
+
+/* Data items. */
+    /// Sensitivity of myi.
+        float sensitivity;
+    /// Let's invert it.
     SbBool invert;
   private:
-    /** Spole���st konstruktor.
-    Provede inicializace prohl�� spole��jak pro priv�n� tak pro veejn
-    konstruktor.
-    \param buildNow P�nak vytvoen�okna prohl��. */
+    /**
+Compound constructor.
+    Initializes the view both for private and public
+    constructor.
+    \param buildNow Build the browser window.*/
     void constructorCommon(SbBool buildNow);
-    /** Vr��sted okna prohl��.
-    Zjist�a vr��sted okna prohl�� v pixelech relativn�od po�tku okna.
-    \return Sted okna prohl��. */
+    /** In the middle of the view window.
+            Finds the center of the viewport window in pixels relative to the start of the window.
+            \return View window center. */
     SbVec2s getCenter() const;
-    /** Vr��pozici okna prohl��.
-    Zjist�a vr��pozici okna prohl�� v pixelech relativn�od po�tku rodi�
-    okna prohl��.
-    \return Pozice okna prohl��. */
+    /** View window position.
+            Finds the position of the view window in pixels relative to the parent number
+            view window
+            \return View window position. */
     SbVec2s getPosition() const;
-    /** Nastav�pozici kurzoru prohl��.
-    Nastav�pozici kurzoru prohl�� na hodnotu \p position absolutn�od
-    po�tku obrazovky.
-    \param position Nov�pozice kurzoru prohl��. */
+    /** Set the scan cursor position.
+            Set the view cursor position to the value \p absolute position
+            the bottom of the screen.
+            \param position New position of the scan cursor. */
     void setCursorPosition(const SbVec2s position);
-    /** Vr��pozici kurzoru prohl��.
-    Vr��hodnotu pozice kurzoru prohl�� absolutn�od po�tku obrazovky.
-    \return Pozice kurzoru prohl��.  */
+    /** View cursor position.
+            The value of the cursor position is searched absolutely from the beginning of the screen.
+            \return Cursor view position. */
     SbVec2s getCursorPosition();
 };
 

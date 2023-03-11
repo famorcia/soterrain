@@ -184,21 +184,21 @@ void terrainCallback(void * userData, SoEventCallback * eventCB)
       {
         SoSimpleROAMTerrain * terrain = reinterpret_cast<SoSimpleROAMTerrain *>
           (userData);
-        terrain->frustrumCulling.setValue(!terrain->frustrumCulling.getValue());
+        terrain->frustumCulling.setValue(!terrain->frustumCulling.getValue());
       }
       break;
       case ID_ALG_GEO_MIPMAP:
       {
         SoSimpleGeoMipmapTerrain * terrain = reinterpret_cast<SoSimpleGeoMipmapTerrain *>
           (userData);
-        terrain->frustrumCulling.setValue(!terrain->frustrumCulling.getValue());
+        terrain->frustumCulling.setValue(!terrain->frustumCulling.getValue());
       }
       break;
       case ID_ALG_CHUNKED_LOD:
       {
         SoSimpleChunkedLoDTerrain * terrain = reinterpret_cast<SoSimpleChunkedLoDTerrain *>
           (userData);
-        terrain->frustrumCulling.setValue(!terrain->frustrumCulling.getValue());
+        terrain->frustumCulling.setValue(!terrain->frustumCulling.getValue());
       }
       break;
     }
@@ -357,7 +357,7 @@ int main(int argc, char * argv[])
   int pixel_error = 6;
   SbBool is_animation = FALSE;
   SbBool is_full_screen = FALSE;
-  SbBool is_frustrum_culling = TRUE;
+  SbBool is_frustum_culling = TRUE;
 
   /* Get program arguments. */
   int command = 0;
@@ -444,10 +444,10 @@ int main(int argc, char * argv[])
         is_full_screen = TRUE;
       }
       break;
-      /* Frustrum culling. */
+      /* frustum culling. */
       case 'c':
       {
-        is_frustrum_culling = FALSE;
+        is_frustum_culling = FALSE;
       }
       break;
       /* Do animation. */
@@ -693,7 +693,7 @@ int main(int argc, char * argv[])
       terrain->mapSize.setValue(width);
       terrain->pixelError.setValue(pixel_error);
       terrain->triangleCount.setValue(triangle_count);
-      terrain->frustrumCulling.setValue(is_frustrum_culling);
+      terrain->frustumCulling.setValue(is_frustum_culling);
       terrain_callback->addEventCallback(SoKeyboardEvent::getClassTypeId(),
         terrainCallback, terrain);
       separator->addChild(terrain);

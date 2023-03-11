@@ -73,9 +73,9 @@ SoSimpleChunkedLoDTerrain::SoSimpleChunkedLoDTerrain():
   view_volume(SbViewVolume()), viewport_region(SbViewportRegion()),
   tile_tree(NULL), distance_const(0.0f), is_texture(FALSE), is_normals(FALSE),
   map_size(2), tile_size(2), pixel_error(DEFAULT_PIXEL_ERROR),
-  is_frustrum_culling(TRUE), is_freeze(FALSE), map_size_sensor(NULL),
+  is_frustum_culling(TRUE), is_freeze(FALSE), map_size_sensor(NULL),
   tile_size_sensor(NULL), pixel_error_sensor(NULL),
-  frustrum_culling_sensor(NULL), freeze_sensor(NULL)
+  frustum_culling_sensor(NULL), freeze_sensor(NULL)
 {
   // Init object.
   SO_NODE_CONSTRUCTOR(SoSimpleChunkedLoDTerrain);
@@ -84,14 +84,14 @@ SoSimpleChunkedLoDTerrain::SoSimpleChunkedLoDTerrain():
   SO_NODE_ADD_FIELD(mapSize, (2));
   SO_NODE_ADD_FIELD(tileSize, (2));
   SO_NODE_ADD_FIELD(pixelError, (DEFAULT_PIXEL_ERROR));
-  SO_NODE_ADD_FIELD(frustrumCulling, (TRUE));
+  SO_NODE_ADD_FIELD(frustumCulling, (TRUE));
   SO_NODE_ADD_FIELD(freeze, (FALSE));
 
   // Create sensors.
   this->map_size_sensor = new SoFieldSensor(mapSizeChangedCB, this);
   this->tile_size_sensor = new SoFieldSensor(tileSizeChangedCB, this);
   this->pixel_error_sensor = new SoFieldSensor(pixelErrorChangedCB, this);
-  this->frustrum_culling_sensor = new SoFieldSensor(frustrumCullingChangedCB,
+  this->frustum_culling_sensor = new SoFieldSensor(frustumCullingChangedCB,
     this);
   this->freeze_sensor = new SoFieldSensor(freezeChangedCB, this);
 
@@ -99,7 +99,7 @@ SoSimpleChunkedLoDTerrain::SoSimpleChunkedLoDTerrain():
   this->map_size_sensor->attach(&(this->mapSize));
   this->tile_size_sensor->attach(&(this->tileSize));
   this->pixel_error_sensor->attach(&(this->pixelError));
-  this->frustrum_culling_sensor->attach(&(this->frustrumCulling));
+  this->frustum_culling_sensor->attach(&(this->frustumCulling));
   this->freeze_sensor->attach(&(this->freeze));
 }
 
@@ -271,13 +271,13 @@ void SoSimpleChunkedLoDTerrain::pixelErrorChangedCB(void * _instance,
   instance->pixel_error = instance->pixelError.getValue();
 }
 
-void SoSimpleChunkedLoDTerrain::frustrumCullingChangedCB(void * _instance,
+void SoSimpleChunkedLoDTerrain::frustumCullingChangedCB(void * _instance,
   SoSensor * sensor)
 {
-  // Actualize frustrum culling field internal value.
+  // Actualize frustum culling field internal value.
   SoSimpleChunkedLoDTerrain * instance =
     reinterpret_cast<SoSimpleChunkedLoDTerrain *>(_instance);
-  instance->is_frustrum_culling = instance->frustrumCulling.getValue();
+  instance->is_frustum_culling = instance->frustumCulling.getValue();
 }
 
 void SoSimpleChunkedLoDTerrain::freezeChangedCB(void * _instance,
@@ -825,8 +825,8 @@ void SoSimpleChunkedLoDTerrain::renderTree(SoGLRenderAction * action,
   }
   else
   {
-    // Render tile if is in view volume or frustrum culling is disabled.
-    if (!this->is_frustrum_culling || this->view_volume.intersect(tile.bounds))
+    // Render tile if is in view volume or frustum culling is disabled.
+    if (!this->is_frustum_culling || this->view_volume.intersect(tile.bounds))
     {
       distance = sqrt(distance);
       float morph = (distance_const * tile.error) / distance;
@@ -855,6 +855,6 @@ SoSimpleChunkedLoDTerrain::~SoSimpleChunkedLoDTerrain()
   delete this->map_size_sensor;
   delete this->tile_size_sensor;
   delete this->pixel_error_sensor;
-  delete this->frustrum_culling_sensor;
+  delete this->frustum_culling_sensor;
   delete this->freeze_sensor;
 }

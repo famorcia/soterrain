@@ -33,12 +33,12 @@
 
 #include <debug.h>
 
-/** Vpo�t dvojkov�o logaritmu celo�seln�o �sla.
-Vypo�e logaritmus celo�seln�o �sla \p number se z�ladem logaritmu 2.
-Vsledek je op� celo�seln a pedpokl��se, ze �slo \p number je n�terou
-mocninou �sla 2.
-\param number �slo, jeho logaritmus se m�spo�tat.
-\return Vypo�en celo�seln logaritmus se z�ladem 2. */
+/** Computation of binary logarithm of integer powers.
+Calculates the logarithm of the entire word \p number with the logarithm base of 2.
+The result is again complete and assumes that the word \p number is an integer
+to the power of 2.
+\param number  slo, its logarithm to be calculated.
+\return Calculated integer logarithm with base 2. */
 inline int ilog2(int number)
 {
   int tmp = number;
@@ -51,18 +51,18 @@ inline int ilog2(int number)
   return result;
 }
 
-/// Hodnota zpracovan�o prarametru.
+/// The value processed by the parameter.
 extern char * optarg;
 
 #ifndef HAVE_GETOPT
 
-/** Zpracov��parametr programu.
-N�rada standardn�funkce \p getopt pro prosted�Microsoft Visual Studio.
-\param argc Po�t parametr programu.
-\param argv Pole parametr programu.
-\param optstring �t�ec popisuj��zpracov�an�parametry.
-\return Znak zpracovan�o parametru nebo \p -1, jsou-li vsechny parametry
-zpracov�y. */
+/** Program processing parameter.
+Like the standard \p getopt function for Microsoft Visual Studio.
+\param argc Number of program parameters.
+\param argv Program parameter array.
+\param optstring describes the parameters to be processed.
+\return Character processed by parameter or \p -1 if all parameters
+processed. */
 int getopt(int argc, char * const argv[], const char * optstring);
 
 #endif // HAVE_GETOPT

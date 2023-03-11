@@ -92,7 +92,7 @@ class SoSimpleROAMTerrain : public SoShape
     /// Maxim�n�po�t trojheln� v triangulaci.
     SoSFInt32 triangleCount;
     /// P�nak oez���ter�u mimo zorn�pole.
-    SoSFBool frustrumCulling;
+    SoSFBool frustumCulling;
     /// P�nak "zmrazen� vykreslov��ter�u.
     SoSFBool freeze;
   protected:
@@ -206,11 +206,11 @@ class SoSimpleROAMTerrain : public SoShape
     \param instance Ukazatel na instanci t�y \p SoSimpleROAMTerrain.
     \param sensor Senzor, kter callback vyvolal. */
     static void triangleCountChangedCB(void * instance, SoSensor * sensor);
-    /** Callback zm�y pole \p ::frustrumCulling.
-    Pi zm��hodnoty pole \p ::frustrumCulling nastav�jeho intern�    reprezentaci novou hodnotu.
+    /** Callback zm�y pole \p ::frustumCulling.
+    Pi zm��hodnoty pole \p ::frustumCulling nastav�jeho intern�    reprezentaci novou hodnotu.
     \param instance Ukazatel na instanci t�y \p SoSimpleROAMTerrain.
     \param sensor Senzor, kter callback vyvolal. */
-    static void frustrumCullingChangedCB(void * instance, SoSensor * sensor);
+    static void frustumCullingChangedCB(void * instance, SoSensor * sensor);
     /** Callback zm�y pole \p ::freeze.
     Pi zm��hodnoty pole \p ::freeze nastav�jeho intern�reprezentaci novou
     hodnotu.
@@ -255,7 +255,7 @@ class SoSimpleROAMTerrain : public SoShape
     /// Maxim�n�po�t trojheln� v triangulaci.
     int triangle_count;
     /// P�nak oez���ter�u mimo zorn�pole.
-    SbBool is_frustrum_culling;
+    SbBool is_frustum_culling;
     /// P�nak "zmrazen� vykreslov��ter�u.
     SbBool is_freeze;
     /* Sensory. */
@@ -265,8 +265,8 @@ class SoSimpleROAMTerrain : public SoShape
     SoFieldSensor * pixel_error_sensor;
     /// Senzor pole \p ::triangleCount.
     SoFieldSensor * triangle_count_sensor;
-    /// Senzor pole \p ::frustrumCulling.
-    SoFieldSensor * frustrum_culling_sensor;
+    /// Senzor pole \p ::frustumCulling.
+    SoFieldSensor * frustum_culling_sensor;
     /// Senzor pole \p ::freeze.
     SoFieldSensor * freeze_sensor;
     /* Konstanty. */

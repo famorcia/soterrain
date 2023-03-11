@@ -57,10 +57,10 @@ SoSimpleROAMTerrain::SoSimpleROAMTerrain():
   lambda(0.0f), split_queue(NULL), merge_queue(NULL),
   is_texture(FALSE), is_normals(FALSE),
   map_size(2), pixel_error(DEFAULT_PIXEL_ERROR),
-  triangle_count(DEFAULT_TRIANGLE_COUNT), is_frustrum_culling(TRUE),
+  triangle_count(DEFAULT_TRIANGLE_COUNT), is_frustum_culling(TRUE),
   is_freeze(FALSE),
   map_size_sensor(NULL), pixel_error_sensor(NULL), triangle_count_sensor(NULL),
-  frustrum_culling_sensor(NULL), freeze_sensor(NULL)
+  frustum_culling_sensor(NULL), freeze_sensor(NULL)
 {
   /* Inicializace tridy. */
   SO_NODE_CONSTRUCTOR(SoSimpleROAMTerrain);
@@ -69,21 +69,21 @@ SoSimpleROAMTerrain::SoSimpleROAMTerrain():
   SO_NODE_ADD_FIELD(mapSize, (2));
   SO_NODE_ADD_FIELD(pixelError, (DEFAULT_PIXEL_ERROR));
   SO_NODE_ADD_FIELD(triangleCount, (DEFAULT_TRIANGLE_COUNT));
-  SO_NODE_ADD_FIELD(frustrumCulling, (TRUE));
+  SO_NODE_ADD_FIELD(frustumCulling, (TRUE));
   SO_NODE_ADD_FIELD(freeze, (FALSE));
 
   /* Vytvoreni senzoru. */
   map_size_sensor = new SoFieldSensor(mapSizeChangedCB, this);
   pixel_error_sensor = new SoFieldSensor(pixelErrorChangedCB, this);
   triangle_count_sensor = new SoFieldSensor(triangleCountChangedCB, this);
-  frustrum_culling_sensor = new SoFieldSensor(frustrumCullingChangedCB, this);
+  frustum_culling_sensor = new SoFieldSensor(frustumCullingChangedCB, this);
   freeze_sensor = new SoFieldSensor(freezeChangedCB, this);
 
   /* Napojeni senzoru na pole */
   map_size_sensor->attach(&mapSize);
   pixel_error_sensor->attach(&pixelError);
   triangle_count_sensor->attach(&triangleCount);
-  frustrum_culling_sensor->attach(&frustrumCulling);
+  frustum_culling_sensor->attach(&frustumCulling);
   freeze_sensor->attach(&freeze);
 
   /* Inicializace internich struktur. */
@@ -479,7 +479,7 @@ inline float SoSimpleROAMTerrain::computePriority(
   else
   {
     /* Neni-li tak blizko, zjisteni jestli je trojuhelnik videt. */
-    if (!this->is_frustrum_culling || this->isInViewVolume(first, second,
+    if (!this->is_frustum_culling || this->isInViewVolume(first, second,
       apex))
     {
       return lambda * triangle->error / (distance - triangle->radius);
@@ -823,13 +823,13 @@ void SoSimpleROAMTerrain::triangleCountChangedCB(void * _instance,
   instance->triangle_count = instance->triangleCount.getValue();
 }
 
-void SoSimpleROAMTerrain::frustrumCullingChangedCB(void * _instance,
+void SoSimpleROAMTerrain::frustumCullingChangedCB(void * _instance,
   SoSensor * sensor)
 {
   /* Aktualizace vnitrni hodnoty pole. */
   SoSimpleROAMTerrain * instance =
     reinterpret_cast<SoSimpleROAMTerrain *>(_instance);
-  instance->is_frustrum_culling = instance->frustrumCulling.getValue();
+  instance->is_frustum_culling = instance->frustumCulling.getValue();
 }
 
 void SoSimpleROAMTerrain::freezeChangedCB(void * _instance,

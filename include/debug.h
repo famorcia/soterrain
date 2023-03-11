@@ -4,12 +4,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ////////////////////////////////////////////////////////////////////////////////
-/// Obecn�makra pro ladic�vpisy.
+/// General macros for debug entries.
 /// \file debug.h
 /// \author Radek Barton - xbarto33
 /// \date 19.04.2005
 ///
-/// Makra slou��k pomocnm vpism b�em lad��programu.
+/// Macros with auxiliary entries during debugging.
 //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //
@@ -28,14 +28,13 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ///////////////////////////////////////////////////////////////////////////////
 
-// ostatni includy
 #include <iostream>
 
-/** Vpis ladic�zpr�y.
-Zap� na standardn�vstup zpr�u \p message ve form�u vhodn� pro lad��
-\param message Zpr�a pro ladic�vpis. Me bt zaps�a jako b� vraz nebo
-(vzhledem k tomu, e to je makro) jako seznam identifik�or odd�ench
-oper�orem <<. */
+/** Entry of debug messages.
+Turn on the standard input of the \p message in a form suitable for debugging
+\param message The message for the debug entry. I should be listed as a murderer or
+(since this is a macro) as a list of department identifiers
+operator <<. */
 #ifdef DEBUG
   #define Debug(message) \
   { \
@@ -47,11 +46,11 @@ oper�orem <<. */
   #define Debug(message)
 #endif
 
-/** Zobrazen�obsahu asociativn�o pole.
-Vyp� na standardn�vstup obsah asociativn�o pole \p map typu \p std::map
-ve form�u vhod� pro lad��
-\param map Asociativn�pole, jeho obsah se m�vypsat.
-\param iterator_type Typ iter�oru, kter ma do asociativn�o pole \p map p�tup.
+/** The content of the associative field is displayed.
+Outputs the contents of an associative array \p map of type \p std::map to standard input
+in a form suitable for harmony
+\param map An associative field, its contents should be printed.
+\param iterator_type The type of iterator that has access to the associative array \p map.
 */
 #ifdef DEBUG
   #define DebugMap(map, iterator_type) \
@@ -71,11 +70,11 @@ ve form�u vhod� pro lad��
   #define DebugMap(map, iterator_type)
 #endif
 
-/** Zobrazeni obsahu vektoru.
-Vyp� na standardn�vstup obsah vektoru typu \p std::vector ve form�u
-vhod� pro lad��
-\param vector Asociativn�pole, jeho obsah se m�vypsat.
-\param iterator_type Typ iter�oru, kter ma do vectoru \p vector p�tup.
+/** Display the contents of the vector.
+Outputs to standard input the contents of a vector of type \p std::vector in the form
+suitable for harmony
+\param vector An associative array, its content to be written.
+\param iterator_type The type of iterator that has a vector path to the \p vector.
 */
 #ifdef DEBUG
   #define DebugVec(vector, iterator_type) \

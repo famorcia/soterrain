@@ -91,7 +91,7 @@ class SoSimpleGeoMipmapTerrain : public SoShape
     /// Chyba zobrazen�v pixelech.
     SoSFInt32 pixelError;
     /// P�nak oez���pohledovm t�esem.
-    SoSFBool frustrumCulling;
+    SoSFBool frustumCulling;
     /// P�nak "zmrazen� vykreslov��ter�u.
     SoSFBool freeze;
   protected:
@@ -174,12 +174,12 @@ class SoSimpleGeoMipmapTerrain : public SoShape
     \param instance Ukazatel na instanci t�y SoSimpleGeoMipmapTerrain.
     \param sensor Senzor, kter callback vyvolal */
     static void pixelErrorChangedCB(void * instance, SoSensor * sensor);
-    /** Callback zm�y pole \p frustrumCulling.
-    Pi zm��hodnoty pole \p frustrumCulling nastav�jeho intern�reprezentaci
+    /** Callback zm�y pole \p frustumCulling.
+    Pi zm��hodnoty pole \p frustumCulling nastav�jeho intern�reprezentaci
     novou hodnotu.
     \param instance Ukazatel na instanci t�y SoSimpleGeoMipmapTerrain.
     \param sensor Senzor, kter callback vyvolal */
-    static void frustrumCullingChangedCB(void * instance, SoSensor * sensor);
+    static void frustumCullingChangedCB(void * instance, SoSensor * sensor);
     /** Callback zm�y pole \p freeze.
     Pi zm��hodnoty pole \p freeze nastav�jeho intern�reprezentaci novou
     hodnotu.
@@ -214,7 +214,7 @@ class SoSimpleGeoMipmapTerrain : public SoShape
     /// Chyba zobrazen�v pixelech.
     int pixel_error;
     /// P�nak oez���pohledovm t�esem.
-    SbBool is_frustrum_culling;
+    SbBool is_frustum_culling;
     /// P�nak "zmrazen� vykreslov��ter�u.
     SbBool is_freeze;
     /* Sensory. */
@@ -224,8 +224,8 @@ class SoSimpleGeoMipmapTerrain : public SoShape
     SoFieldSensor * tile_size_sensor;
     /// Senzor pole \p pixelError.
     SoFieldSensor * pixel_error_sensor;
-    /// Senzor pole \p frustrumCulling.
-    SoFieldSensor * frustrum_culling_sensor;
+    /// Senzor pole \p frustumCulling.
+    SoFieldSensor * frustum_culling_sensor;
     /// Senzor pole \p freeze.
     SoFieldSensor * freeze_sensor;
     /* Konstanty. */

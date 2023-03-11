@@ -84,7 +84,7 @@ class SoSimpleChunkedLoDTerrain : public SoShape
     /// Desired pixel error of rendered terrain.
     SoSFInt32 pixelError;
     /// Flag of enabled frustum culling.
-    SoSFBool frustrumCulling;
+    SoSFBool frustumCulling;
     /// Flag of frozen algorithm.
     SoSFBool freeze;
   protected:
@@ -132,13 +132,13 @@ class SoSimpleChunkedLoDTerrain : public SoShape
       instance.
     \param sensor Sensor which called this callback. */
     static void pixelErrorChangedCB(void * instance, SoSensor * sensor);
-    /** Callback for change of SoSimpleChunkedLoDTerrain::frustrumCulling field.
-    Sets internal value of SoSimpleChunkedLoDTerrain::frustrumCulling field to
+    /** Callback for change of SoSimpleChunkedLoDTerrain::frustumCulling field.
+    Sets internal value of SoSimpleChunkedLoDTerrain::frustumCulling field to
     new value when this fields has changed.
     \param instance Pointer to affected ::SoSimpleChunkedLoDTerrain class
       instance.
     \param sensor Sensor which called this callback. */
-    static void frustrumCullingChangedCB(void * instance, SoSensor * sensor);
+    static void frustumCullingChangedCB(void * instance, SoSensor * sensor);
     /** Callback for change of SoSimpleChunkedLoDTerrain::freeze field.
     Sets internal value of SoSimpleChunkedLoDTerrain::freeze field to
     new value when this fields has changed.
@@ -173,8 +173,8 @@ class SoSimpleChunkedLoDTerrain : public SoShape
     int tile_size;
     /// Internal value of SoSimpleChunkedLoDTerrain::pixelError field.
     int pixel_error;
-    /// Internal value of SoSimpleChunkedLoDTerrain::frustrumCulling field.
-    SbBool is_frustrum_culling;
+    /// Internal value of SoSimpleChunkedLoDTerrain::frustumCulling field.
+    SbBool is_frustum_culling;
     /// Internal value of SoSimpleChunkedLoDTerrain::freeze field.
     SbBool is_freeze;
     /* Sensors. */
@@ -184,8 +184,8 @@ class SoSimpleChunkedLoDTerrain : public SoShape
     SoFieldSensor * tile_size_sensor;
     /// Sensor watching SoSimpleChunkedLoDTerrain::pixelError field changes.
     SoFieldSensor * pixel_error_sensor;
-    /// Sensor watching SoSimpleChunkedLoDTerrain::frustrumCulling field changes.
-    SoFieldSensor * frustrum_culling_sensor;
+    /// Sensor watching SoSimpleChunkedLoDTerrain::frustumCulling field changes.
+    SoFieldSensor * frustum_culling_sensor;
     /// Sensor watching SoSimpleChunkedLoDTerrain::freeze field changes.
     SoFieldSensor * freeze_sensor;
     /* Constants. */
