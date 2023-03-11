@@ -1,15 +1,15 @@
 General:
  - make terrain algorithm nodes superclass
  - make tile based algorithm nodes superclass
- - tranlsate comments
- - preppend "this->" to all methods and attributes
+ - translate comments
+ - prepend "this->" to all methods and attributes
  - make internal functions private instead of protected
  - start using code tags
  - let headers include only header for definition not for implementation too
  - change code comments to inline comments.
 
 Geo MipMapping:
- - check if tile tree size is computed corectly
+ - check if tile tree size is computed correctly
  - better height map size checking
  - change tile vertices array to SbList
  - change tile array to SbList

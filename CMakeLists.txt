@@ -27,8 +27,6 @@ include_directories(BEFORE
         ${Coin_INCLUDE_DIR}
         )
 
-#add_definitions( -I/opt/SoQt/include -INONE -DQT_SHARED)
-#include_directories( -I/usr/include/QtCore -I/usr/include/QtGui -I/usr/include/QtOpenGL)
 MESSAGE(${So${Gui}_INCLUDE_DIRS})
 MESSAGE(${Coin_INCLUDE_DIR})
 
