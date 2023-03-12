@@ -4,15 +4,16 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  SoTerrain
 ///////////////////////////////////////////////////////////////////////////////
-/// Ter� vykreslovan algoritmem ROAM.
+/// Ter  rendered by the ROAM algorithm.
 /// \file SoSimpleROAMTerrain.h
 /// \author Radek Barton - xbarto33
 /// \date 25.08.2005
 ///
-/// Uzel grafu sc�y reprezentuj��ter� vykreslovan algoritmem ROAM. Pro
-/// pouit�je teba uzlu pedadit uzel s koordin�y typu \p SoCordinate3
-/// obsahuj��vkovou mapu ter�u a nastavit jej�rozm�y. Velikost vkov�/// mapy mus�bt �vercov�o velikosti strany 2^n + 1, kde n je cel�kladn�/// �slo.
-//////////////////////////////////////////////////////////////////////////////
+/// The scene graph node represents the ter rendered by the ROAM algorithm. For
+/// the node is used as a node with coordinates of type \p SoCoordinate3
+/// content map and set its dimensions.
+/// The size of the map must be equal to the page size of 2^n + 1, where n is a positive integer.
+/// //////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2006 Radek Barton
 //
 // This library is free software; you can redistribute it and/or
@@ -30,7 +31,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ///////////////////////////////////////////////////////////////////////////////
 
-// Coin includy
+// Coin includes
 #include <Inventor/SbBasic.h>
 #include <Inventor/SbLinear.h>
 #include <Inventor/SoPrimitiveVertex.h>
@@ -53,67 +54,71 @@
 #include <Inventor/sensors/SoFieldSensor.h>
 #include <Inventor/bundles/SoMaterialBundle.h>
 
-// OpenGL includy
+// OpenGL includes
 #if defined(__WIN32__) || defined(_WIN32)
   #include <windows.h>
 #endif
 #include <GL/gl.h>
 
-// ostatni includy
+// standard includes
 #include <iostream>
 
-// lokalni includy
+// local includes
 #include <roam/SbROAMPrimitives.h>
 #include <roam/SbROAMSplitQueue.h>
 #include <roam/SbROAMMergeQueue.h>
 #include <profiler/PrProfiler.h>
 #include <debug.h>
 
-/** Ter� vykreslovan algoritmem ROAM.
-Uzel grafu sc�y reprezentuj��ter� vykreslovan algoritmem ROAM. Pro pouit�je teba uzlu pedadit uzel s koordin�y typu \p SoCordinate3 obsahuj��vkovou mapu ter�u a nastavit jej�rozm�y. Velikost vkov�mapy mus�bt
-�vercov�o velikosti strany 2^n + 1, kde n je cel�kladn��slo. */
+/**
+ * Ter  rendered by the ROAM algorithm.
+ * The sc y graph node represents the meter rendered by the ROAM algorithm.
+ * To use the node, add a node with coordinates of the type
+ * \p SoCoordinate3 to the current content map and set its dimensions.
+ * The size of the map must be a vertices of side size 2^n + 1, where n is a positive integer.
+ */
 class SoSimpleROAMTerrain : public SoShape
 {
   SO_NODE_HEADER(SoSimpleROAMTerrain);
   public:
-    /* Metody */
-    /** Run-time inicializace t�y.
-    Tuto metodu je teba zavolat ped vytvoen� jak�oliv instance t�y
-    ::SoSimpleROAMTerrain. */
+    /** Run-time initialization.
+    You must call this method before creating any instance of it
+    ::SoSimpleROAMTerrain.*/
     static void initClass();
-    /** Konstruktor.
-    Vytvo�instanci t�y ::SoSimpleROAMTerrain, inicializuje ob�prioritn�    fronty. */
+
+/** Constructor.
+    Creating an instance of ::SoSimpleROAMTerrain, initializes both priority queues. */
     SoSimpleROAMTerrain();
-    /* Pole. */
-    /// Velikost (vka i �ka) vkov�mapy ter�u.
+    /* Field. */
+    /// The size (height and width) of the current map.
     SoSFInt32 mapSize;
-    /// Chyba zobrazen�v pixelech.
+    /// Display error in pixels.
     SoSFInt32 pixelError;
-    /// Maxim�n�po�t trojheln� v triangulaci.
+    /// Maximum number of triangles in triangulation.
     SoSFInt32 triangleCount;
-    /// P�nak oez���ter�u mimo zorn�pole.
+    /// P nak oezer   out of field of vision.
     SoSFBool frustumCulling;
-    /// P�nak "zmrazen� vykreslov��ter�u.
+    /// The image is "frozen" on the renderer.
     SoSFBool freeze;
   protected:
-    /* Metody */
-    /** Vykreslen�aktu�n�triangulace.
-    Na z�lad�vstupn�h dat ve vkov�map� pozici a sm�u kamery a dal�h
-    vlastnost�v prvn� sput��vybuduje bin�n�strom trojheln�, pot�-
-    a tak�v dal�h sput��h - rozd�uje a spojuje trojheln�y a diamanty v
-    prioritn�h front�h tak, aby se dos�lo minim�n�triangulace. N�ledn�    tuto triangulaci vykresl�
-    \param action Objekt nesouc�informace o grafu sc�y. */
+/** Render the current triangulation.
+    Based on the input data in the map, the position and distance of the camera and distance
+    properties in the first step builds a trihedral binotree, then
+    and so on in long chains - it expands and connects triangles and diamonds in
+    priority fronts so as to achieve minimal triangulation. Next, draw this triangulation
+    \param action An object containing information about the sc y graph. */
     virtual void GLRender(SoGLRenderAction * action);
-    /** Vytvoen�vech trojheln� vkov�mapy.
-    Ze vstupn�vkov�mapy vytvo�seznam trojheln� na nejvy�rovni
-    detail pro �ly detekce koliz�a podobn�
-    \param action Objekt nesouc�informace o grafu sc�y. */
+
+/** Generated trigonal metalmaps.
+    Create a list of triangles on the highest level from the input map
+    detail for collision detection purposes and similar
+    \param action An object containing information about the sc y graph. */
     virtual void generatePrimitives(SoAction * action);
-    /** Vpo�t ohrani�n�ter�u.
-    Vypo�e rozm�y a sted kv�ru, kter ohrani�je cel ter�.
-    \param action Objekt nesouc�informace o grafu sc�y.
-    \param box Vypo�en kv�r ohrani�j��ter�.
-    \param center Vypo�en sted kv�ru ohrani�j��o ter�. */
+    /** Input boundary layer.
+    It measures the dimensions and the center of the cross that bounds the whole area.
+    \param action An object containing information about the sc y graph.
+    \param box Computed cross border.
+    \param center Calculated center of the bounding box. */
     virtual void computeBBox(SoAction * action, SbBox3f & box,
       SbVec3f & center);
     /** Inicializace bin�n�o stromu trojheln�.

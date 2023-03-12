@@ -9,7 +9,7 @@
 /// \author Radek Barton - xbarto33
 /// \date 29.01.2006
 ///
-/// The sc y graph node represents the ter rendered by the Geo algorithm
+/// The scene graph node represents the ter rendered by the Geo algorithm
 /// Mip-Mapping. To use the te node, the node should be a node with coordinates of the type
 /// SoCoordinate3 contains the terrain map and set its dimensions a
 /// sizes of tiles generated from this texture map The size of the texture map must
