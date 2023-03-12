@@ -43,13 +43,14 @@ jobs:
           tar xzf $DOWNLOAD_FILE_SIMAGE -C cmake_download_dir
           cmake -S . -B cmake_build_dir -G "Unix Makefiles" -DGui=Qt -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=cmake_install_dir -DCMAKE_PREFIX_PATH=cmake_download_dir/Coin3D
       - name: Build project
-        run: cmake --build cmake_build_dir --target install --config Release -- -j4
+        run: cmake --build cmake_build_dir --config Release -- -j4
+      # not install https://api.github.com/repos/coin3d/simage/releases
       #- name: Run tests
       #  run:  ctest -C Release -VV
       #  working-directory: cmake_build_dir
-      - name: Create Artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: Ubuntu-Artifacts
-          path: cmake_install_dir/
-        if: always()
+      #- name: Create Artifacts
+      #  uses: actions/upload-artifact@v1
+      #  with:
+      #    name: Ubuntu-Artifacts
+      #    path: cmake_install_dir/
+      #  if: always()
