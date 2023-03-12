@@ -779,7 +779,6 @@ int main(int argc, char * argv[])
   /* Run application. */
   So@Gui@::show(window);
   So@Gui@::mainLoop();
-  So@Gui@::done();
 
   PR_PRINT_RESULTS(profile_name);
 
@@ -787,6 +786,8 @@ int main(int argc, char * argv[])
   root->unref();
   delete camera_timer;
   delete render_area;
+
+  So@Gui@::done();
 
   return EXIT_SUCCESS;
 }
