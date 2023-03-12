@@ -20,7 +20,7 @@ find_package(Coin REQUIRED)
 
 find_package(So${Gui} REQUIRED)
 
-# find_package(simage REQUIRED)
+find_package(simage REQUIRED)
 
 include_directories(BEFORE
         ${So${Gui}_INCLUDE_DIRS}

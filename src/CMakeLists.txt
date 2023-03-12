@@ -45,4 +45,4 @@ add_executable(SoTerrainTest
 target_include_directories(SoTerrainTest PRIVATE ${CMAKE_SOURCE_DIR}/include ${CMAKE_BINARY_DIR})
 
 
-target_link_libraries(SoTerrainTest soterrain Coin::Coin So${Gui}::So${Gui} simage OpenGL::GL)
+target_link_libraries(SoTerrainTest soterrain Coin::Coin So${Gui}::So${Gui} simage::simage OpenGL::GL)
