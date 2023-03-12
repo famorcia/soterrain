@@ -682,8 +682,8 @@ int main(int argc, char * argv[])
   separator->addChild(texture);
   separator->addChild(texture_coords);
   separator->addChild(coords);
-  //separator->addChild(normals);
-  //separator->addChild(normal_binding);
+  separator->addChild(normals);
+  separator->addChild(normal_binding);
 
   switch (algorithm)
   {
