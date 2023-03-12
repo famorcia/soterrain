@@ -1,0 +1,55 @@
+name: Continuous Integration Build
+
+on:
+  workflow_dispatch:  # Allow manual triggers
+  pull_request:
+    branches: [ master ]
+#  push:
+#    branches: [ master ]
+
+jobs:
+  ubuntu-build:
+    name: Ubuntu Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
+      - name: Create build directory and run CMake
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install freeglut3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools qttools5-dev-tools libxi-dev
+          mkdir cmake_download_dir
+          DOWNLOAD_FILE_COIN=coin-latest-Ubuntu2004-gcc9-x64.tar.gz
+          RELEASE_ID=`curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/coin3d/coin/releases | jq -r --arg COIN_REPO_TAG_NAME "CI-builds" '.[] | select(.tag_name==$COIN_REPO_TAG_NAME) | .id'`
+          ASSET_ID=`curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/coin3d/coin/releases/$RELEASE_ID | jq -r --arg DOWNLOAD_FILE_COIN "$DOWNLOAD_FILE_COIN" '.assets[] | select(.name==$DOWNLOAD_FILE_COIN) | .id'`
+          export DOWNLOAD_ADDRESS_COIN=https://api.github.com/repos/coin3d/coin/releases/assets/$ASSET_ID
+          echo download file $DOWNLOAD_FILE_COIN from address $DOWNLOAD_ADDRESS_COIN
+          curl -s -S -L -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/octet-stream" -o $DOWNLOAD_FILE_COIN $DOWNLOAD_ADDRESS_COIN
+          tar xzf $DOWNLOAD_FILE_COIN -C cmake_download_dir
+          DOWNLOAD_FILE_SOQT=soqt-latest-Ubuntu2004-gcc9-x64.tar.gz
+          RELEASE_ID=`curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/coin3d/soqt/releases | jq -r --arg SOQT_REPO_TAG_NAME "CI-builds" '.[] | select(.tag_name==$SOQT_REPO_TAG_NAME) | .id'`
+          ASSET_ID=`curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/coin3d/soqt/releases/$RELEASE_ID | jq -r --arg DOWNLOAD_FILE_SOQT "$DOWNLOAD_FILE_SOQT" '.assets[] | select(.name==$DOWNLOAD_FILE_SOQT) | .id'`
+          export DOWNLOAD_ADDRESS_SOQT=https://api.github.com/repos/coin3d/soqt/releases/assets/$ASSET_ID
+          echo download file $DOWNLOAD_FILE_SOQT from address $DOWNLOAD_ADDRESS_SOQT
+          curl -s -S -L -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/octet-stream" -o $DOWNLOAD_FILE_SOQT $DOWNLOAD_ADDRESS_SOQT
+          tar xzf $DOWNLOAD_FILE_SOQT -C cmake_download_dir
+          DOWNLOAD_FILE_SIMAGE=simage-latest-Ubuntu2004-gcc9-x64.tar.gz
+          RELEASE_ID=`curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/coin3d/simage/releases | jq -r --arg SIMAGE_REPO_TAG_NAME "CI-builds" '.[] | select(.tag_name==$SIMAGE_REPO_TAG_NAME) | .id'`
+          ASSET_ID=`curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/coin3d/simage/releases/$RELEASE_ID | jq -r --arg DOWNLOAD_FILE_SIMAGE "$DOWNLOAD_FILE_SIMAGE" '.assets[] | select(.name==$DOWNLOAD_FILE_SIMAGE) | .id'`
+          export DOWNLOAD_ADDRESS_SIMAGE=https://api.github.com/repos/coin3d/simage/releases/assets/$ASSET_ID
+          echo download file $DOWNLOAD_FILE_SIMAGE from address $DOWNLOAD_ADDRESS_SIMAGE
+          curl -s -S -L -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/octet-stream" -o $DOWNLOAD_FILE_SIMAGE $DOWNLOAD_ADDRESS_SIMAGE
+          tar xzf $DOWNLOAD_FILE_SIMAGE -C cmake_download_dir
+          cmake -S . -B cmake_build_dir -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=cmake_install_dir -DCMAKE_PREFIX_PATH=cmake_download_dir/Coin3D
+      - name: Build project
+        run: cmake --build cmake_build_dir --target install --config Release -- -j4
+      #- name: Run tests
+      #  run:  ctest -C Release -VV
+      #  working-directory: cmake_build_dir
+      - name: Create Artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: Ubuntu-Artifacts
+          path: cmake_install_dir/
+        if: always()
